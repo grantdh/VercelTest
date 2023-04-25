@@ -28,10 +28,7 @@ button:hover {
 
 .banner {
   height: 33vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0; /* Add a background color for better visibility */
+  background-color: #5c84ff; /* Change this to your desired color */
 }
 
 /* Add these styles to format the ASCII art */
