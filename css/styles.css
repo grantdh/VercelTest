@@ -28,3 +28,6 @@ body {
   object-position: center;
 }
 
+.image-container {
+  position: relative;
+}
