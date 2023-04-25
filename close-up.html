@@ -4,37 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Close-Up</title>
-  <style>
-    body {
-      text-align: center;
-      font-family: Arial, sans-serif;
-    }
-    .image-container {
-      margin: 20px;
-    }
-    .image-container img {
-      max-width: 80%;
-      height: auto;
-    }
-    .caption {
-      margin-top: 10px;
-      font-size: 18px;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 16px;
-      text-decoration: none;
-      color: #007bff;
-    }
-  </style>
+  <!-- Include any additional styles or scripts for the close-up view page -->
 </head>
 <body>
-  <div class="image-container">
-    <img src="Users/grantheileman/Documents/website/VercelTest/img/Subject.PNG" alt="Image 1"> <!-- Update the image source and alt text -->
-    <div class="caption">Image 1 Caption</div> <!-- Update the caption or description -->
-  </div>
-  <a class="back-link" href="index.html">Back to Gallery</a> <!-- Update the link to the gallery page -->
+  <div class="image-container" id="image-container"></div>
+  <a class="back-link" href="index.html">Back to Gallery</a>
 
-</body>
-</html>
+  <script>
+    // Same array of image objects as in the gallery page
+    const images = [
+      { src: 'image1.jpg', caption: 'Image 1 Caption' },
+      { src: 'image2.jpg', caption: 'Image 2 Caption' },
+      { src: 'image3.jpg', caption: 'Image 3 Caption' },
+      // Add more images as needed
+    ];
+
+    // Get the query parameter from the URL to determine which image to display
+    const urlParams = new URLSearchParams(window.location.search);
+    const imageIndex = parseInt(urlParams.get('image'));
+
+    // Display the selected image and caption
+    const imageContainer = document.getElementById('image-container');
+    if (imageIndex >= 0 && imageIndex < images.length) {
+      const   selectedImage = images[imageIndex];
+  const img = document.createElement('img');
+  img.src = selectedImage.src;
+  img.alt = selectedImage.caption;
+  const caption = document.createElement('div');
+  caption.textContent = selectedImage.caption;
+  imageContainer.appendChild(img);
+  imageContainer.appendChild(caption);
+} else {
+  // Display an error message if the image index is invalid
+  imageContainer.textContent = 'Image not found.';
+}
+
