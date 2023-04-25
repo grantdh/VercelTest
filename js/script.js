@@ -36,40 +36,13 @@ images.forEach((img) => {
 
 setInterval(scrollGallery, 50);
 
+document.addEventListener("mousemove", (e) => {
+  const windowWidth = window.innerWidth;
+  const mouseX = e.clientX;
 
-function mandelbrotASCII() {
-  const width = 80;
-  const height = 22;
-  const maxIterations = 1000;
-  const mandelbrot = document.getElementById("mandelbrot");
-  let output = "";
+  // Calculate the scroll speed based on the cursor's position
+  const scrollSpeed = (mouseX / windowWidth) * 2 - 1;
 
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const zx = (x / width) * 3.5 - 2.5;
-      const zy = (y / height) * 2 - 1;
-
-      let c = { x: zx, y: zy };
-      let z = { x: 0, y: 0 };
-      let iterations = 0;
-
-      while (iterations < maxIterations) {
-        const xt = z.x * z.x - z.y * z.y + c.x;
-        z.y = 2 * z.x * z.y + c.y;
-        z.x = xt;
-        iterations++;
-
-        if (z.x * z.x + z.y * z.y > 4) {
-          break;
-        }
-      }
-
-      output += iterations === maxIterations ? "#" : " ";
-    }
-    output += "\n";
-  }
-
-  mandelbrot.textContent = output;
-}
-
-mandelbrotASCII();
+  // Apply the scroll speed to the gallery
+  gallery.style.transform = `translateX(calc(-50% + ${scrollSpeed * 100}px))`;
+});
