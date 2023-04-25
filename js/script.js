@@ -1,6 +1,18 @@
 const gallery = document.querySelector(".gallery");
 
-let scrollSpeed = 0;
+// Populate the gallery
+function populateGallery() {
+  imageList.forEach((imageFileName) => {
+    const img = document.createElement("img");
+    img.src = `img/${imageFileName}`; // Adjust the folder path if necessary
+    img.alt = imageFileName;
+    gallery.appendChild(img);
+  });
+}
+
+populateGallery();
+
+let scrollSpeed = -2; // Set the initial scroll speed
 let lastMouseX = null;
 
 document.addEventListener("mousemove", (e) => {
@@ -13,23 +25,6 @@ document.addEventListener("mousemove", (e) => {
 
   lastMouseX = mouseX;
 });
-
-
-// Add this function to create image elements from the imageList array
-function populateGallery() {
-  imageList.forEach((imageFileName) => {
-    const img = document.createElement("img");
-    img.src = `img/${imageFileName}`; // Adjust the folder path if necessary
-    img.alt = imageFileName;
-    gallery.appendChild(img);
-  });
-}
-
-// Call the function to populate the gallery
-populateGallery();
-
-
-
 
 function updateGalleryPosition() {
   const currentTransform = gallery.style.transform;
@@ -45,11 +40,12 @@ function updateGalleryPosition() {
     gallery.style.transform = `translateX(${newTranslateX}px)`;
   }
 
+  // Reduce scroll speed gradually
+  scrollSpeed *= 0.95;
+
   // Continue updating the gallery's position
   requestAnimationFrame(updateGalleryPosition);
 }
 
 // Start updating the gallery's position
 requestAnimationFrame(updateGalleryPosition);
-
-let scrollSpeed = -2; // Set the initial scroll speed
