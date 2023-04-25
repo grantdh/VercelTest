@@ -36,7 +36,7 @@ images.forEach((img) => {
 
 setInterval(scrollGallery, 50);
 
-let scrollSpeed = 0;
+let scrollSpeed = 1;
 
 document.addEventListener("mousemove", (e) => {
   const windowWidth = window.innerWidth;
