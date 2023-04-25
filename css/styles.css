@@ -26,19 +26,17 @@ button:hover {
     background-color: #555;
 }
 
-/* Add this style to position the banner */
 .banner {
   height: 33vh;
-  background-image: url("/img/Subject.PNG");
-  background-size: cover;
-  background-position: center;
-}
-
-.gallery {
   display: flex;
-  position: absolute;
-  white-space: nowrap;
-  transition: transform 0.5s ease;
-  top: 33vh; /* Position the gallery a third of the way down the screen */
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; /* Add a background color for better visibility */
 }
 
+/* Add these styles to format the ASCII art */
+#mandelbrot {
+  font-family: monospace;
+  white-space: pre;
+  text-align: left;
+}
