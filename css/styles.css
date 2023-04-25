@@ -12,11 +12,13 @@ body {
 
 .gallery {
   display: flex;
-  position: relative;
+  position: relative; /* Change from 'absolute' to 'relative' */
+  margin-top: 50px; /* Add this line to position the gallery below the banner */
   white-space: nowrap;
-  transition: transform 0.5s ease;
-  flex-grow: 1;
+  overflow: hidden;
 }
+
+
 
 /* Add the following styles to the existing styles.css */
 .gallery img {

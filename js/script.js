@@ -1,51 +1,42 @@
 const gallery = document.querySelector(".gallery");
+const images = Array.from(gallery.children);
 
-// Populate the gallery
-function populateGallery() {
-  imageList.forEach((imageFileName) => {
-    const img = document.createElement("img");
-    img.src = `img/${imageFileName}`; // Adjust the folder path if necessary
-    img.alt = imageFileName;
-    gallery.appendChild(img);
-  });
-}
-
-populateGallery();
-
-let scrollSpeed = -5; // Set the initial scroll speed
+let scrollSpeed = 2;
 let lastMouseX = null;
 
 document.addEventListener("mousemove", (e) => {
   const windowWidth = window.innerWidth;
   const mouseX = e.clientX;
+  const centerX = windowWidth / 2;
 
   if (lastMouseX !== null) {
-    scrollSpeed = mouseX - lastMouseX;
+    scrollSpeed = (mouseX - centerX) / 50;
   }
 
   lastMouseX = mouseX;
 });
 
 function updateGalleryPosition() {
-  const currentTransform = gallery.style.transform;
-  const currentTranslateX = parseFloat(currentTransform.match(/-?[\d.]+/)) || 0;
-  const newTranslateX = currentTranslateX + scrollSpeed;
-  const galleryWidth = gallery.scrollWidth / 2;
+  images.forEach((image, index) => {
+    const imageRect = image.getBoundingClientRect();
+    const prevImageIndex = index - 1 < 0 ? images.length - 1 : index - 1;
+    const prevImageRect = images[prevImageIndex].getBoundingClientRect();
 
-  // Check if the gallery has scrolled to the end, and if so, reset its position
-  if (Math.abs(newTranslateX) > galleryWidth) {
-    const sign = Math.sign(scrollSpeed);
-    gallery.style.transform = `translateX(${newTranslateX - galleryWidth * sign * 2}px)`;
-  } else {
-    gallery.style.transform = `translateX(${newTranslateX}px)`;
-  }
+    if (scrollSpeed > 0 && imageRect.left > window.innerWidth) {
+      const newTranslateX = prevImageRect.left - prevImageRect.width;
+      image.style.transform = `translateX(${newTranslateX}px)`;
+    } else if (scrollSpeed < 0 && imageRect.right < 0) {
+      const newTranslateX = prevImageRect.right;
+      image.style.transform = `translateX(${newTranslateX}px)`;
+    } else {
+      const currentTransform = image.style.transform;
+      const currentTranslateX = parseFloat(currentTransform.match(/-?[\d.]+/)) || 0;
+      const newTranslateX = currentTranslateX + scrollSpeed;
+      image.style.transform = `translateX(${newTranslateX}px)`;
+    }
+  });
 
-  // Reduce scroll speed gradually
-  scrollSpeed *= 0.95;
-
-  // Continue updating the gallery's position
   requestAnimationFrame(updateGalleryPosition);
 }
 
-// Start updating the gallery's position
 requestAnimationFrame(updateGalleryPosition);
