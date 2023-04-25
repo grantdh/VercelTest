@@ -12,7 +12,7 @@ function populateGallery() {
 
 populateGallery();
 
-let scrollSpeed = -2; // Set the initial scroll speed
+let scrollSpeed = 1; // Set the initial scroll speed
 let lastMouseX = null;
 
 document.addEventListener("mousemove", (e) => {
