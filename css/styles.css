@@ -22,5 +22,7 @@ body {
 .gallery img {
   width: 150px; /* Adjust the width as needed */
   height: 150px; /* Adjust the height as needed */
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
+
