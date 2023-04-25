@@ -36,13 +36,28 @@ images.forEach((img) => {
 
 setInterval(scrollGallery, 50);
 
+let scrollSpeed = 0;
+
 document.addEventListener("mousemove", (e) => {
   const windowWidth = window.innerWidth;
   const mouseX = e.clientX;
 
   // Calculate the scroll speed based on the cursor's position
-  const scrollSpeed = (mouseX / windowWidth) * 2 - 1;
-
-  // Apply the scroll speed to the gallery
-  gallery.style.transform = `translateX(calc(-50% + ${scrollSpeed * 100}px))`;
+  scrollSpeed = (mouseX / windowWidth) * 2 - 1;
 });
+
+function updateGalleryPosition() {
+  const currentTransform = gallery.style.transform;
+  const currentTranslateX = parseFloat(currentTransform.match(/-?[\d.]+/)) || 0;
+  const newTranslateX = currentTranslateX + scrollSpeed;
+
+  // Update the gallery's position
+  gallery.style.transform = `translateX(${newTranslateX}px)`;
+
+  // Continue updating the gallery's position
+  requestAnimationFrame(updateGalleryPosition);
+}
+
+// Start updating the gallery's position
+updateGalleryPosition();
+
