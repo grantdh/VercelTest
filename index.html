@@ -3,32 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery</title>
-  <!-- Include any additional styles or scripts for the gallery page -->
+  <title>Welcome Animation</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="gallery" id="gallery"></div>
-
-  <script>
-    // Array of image objects
-    const images = [
-      { src: '/img/Subject.PNG', caption: 'Image 1 Caption' },
-      { src: '/img/Subject 2.PNG', caption: 'Image 2 Caption' },
-      { src: '/img/Subject 3.PNG', caption: 'Image 3 Caption' },
-      // Add more images as needed
-    ];
-
-    // Generate the gallery HTML based on the array of image objects
-    const gallery = document.getElementById('gallery');
-    images.forEach((image, index) => {
-      const link = document.createElement('a');
-      link.href = `close-up.html?image=${index}`; // Include the query parameter
-      const img = document.createElement('img');
-      img.src = image.src;
-      img.alt = image.caption;
-      link.appendChild(img);
-      gallery.appendChild(link);
-    });
-  </script>
+  <canvas id="patternCanvas"></canvas>
+  <script src="script.js"></script>
 </body>
 </html>

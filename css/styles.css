@@ -1,33 +1,10 @@
-body {
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.banner {
-  height: 33vh;
-  background-color: #5c84ff; /* Change this to your desired color */
-}
-
-.gallery {
-  display: flex;
-  position: relative; /* Change from 'absolute' to 'relative' */
-  margin-top: 50px; /* Add this line to position the gallery below the banner */
-  white-space: nowrap;
+body, html {
+  margin: 0;
+  padding: 0;
   overflow: hidden;
+  height: 100%;
 }
 
-
-
-/* Add the following styles to the existing styles.css */
-.gallery img {
-  width: 150px; /* Adjust the width as needed */
-  height: 150px; /* Adjust the height as needed */
-  object-fit: contain;
-  object-position: center;
-}
-
-.image-container {
-  position: relative;
+canvas {
+  display: block;
 }
