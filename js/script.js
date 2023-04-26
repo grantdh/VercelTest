@@ -13,11 +13,11 @@ class Polygon {
     this.rotationSpeed = rotationSpeed;
   }
 
-draw() {
+  draw() {
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.angle);
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)'; // Add this line to set stroke style
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
 
     ctx.beginPath();
     ctx.moveTo(this.radius * Math.cos(0), this.radius * Math.sin(0));
@@ -33,7 +33,6 @@ draw() {
     ctx.stroke();
     ctx.restore();
   }
-
 
   update() {
     this.angle += this.rotationSpeed;
